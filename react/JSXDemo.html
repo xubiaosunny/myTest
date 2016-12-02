@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>  
+    <meta charset="en">
+    <style>
+        .greeting{
+            color: red;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+</head>
+<body>
+    <div id='demo'>
+
+    </div>
+    <script type="text/babel">
+        function formatName(user){
+            return user.firstname + " " +　user.lastname;
+        }
+        var user = {
+            firstname: 'Harper',
+            lastname: 'Perez'
+        };
+        const element = (
+            <h1 className="greeting">hello,{formatName(user)}</h2></h1>
+        );
+        //const element = {
+        //    type: 'h1',
+        //    props: {
+        //        className: 'greeting',
+        //        children: 'Hello, world'
+        //    }
+        //};
+        //const element = React.createElement(
+        //    'h1',
+        //    {className:'greeting'},
+        //    'hello'
+        //)
+        ReactDOM.render(
+            element,
+            document.getElementById('demo')
+        );
+    </script>
+</body>
+</html>
