@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+</head>
+<body>
+    <div id="id_demo"></div>
+    <script type="text/babel">
+        const numbers = [1,2,3,4,5];
+        const listItems  = numbers.map((number) => 
+            <li>{number}</li>
+        )
+        ReactDOM.render(
+            <listItems />,
+            document.getElementById('id_demo')
+        );
+        
+    </script>
+</body>
+</html>
