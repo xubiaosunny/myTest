@@ -4,6 +4,7 @@ import reprlib
 import math, numbers
 import functools
 import operator
+import itertools
 
 class Vector:
     typecode = 'd'
@@ -84,6 +85,29 @@ class Vector:
         hashes = map(hash, self._components)
         return functools.reduce(operator.xor, hashes)
 
+    def angle(self, n):
+        r = math.sqrt(sum(x * x for x in self[n:]))
+        a = math.atan2(r, self[n-1])
+        if (n == len(self) - 1) and (self[-1] < 0):
+            return math.pi * 2 -a
+        else:
+            return a
+
+    def angles(self):
+        return (self.angle(n) for n in range(1, len(self)))
+
+    def __format__(self, fmt_spec=''):
+        if fmt_spec.endswith('h'):
+            fmt_spec = fmt_spec[:-1]
+            coords = itertools.chain([abs(self)], self.angles())
+            outer_fmt = '<{}>'
+        else:
+            coords = self
+            outer_fmt = '({})'
+
+        components = (format(c, fmt_spec) for c in coords)
+        return outer_fmt.format(','.join(components))
+
 
 
 if __name__ == "__main__":
@@ -95,3 +119,4 @@ if __name__ == "__main__":
     print(v1.x, v1.y, v1.z)
     # v1.x = 2
     print(hash(v1))
+    print(format(v1, '.3f'), format(v1, 'h'))
