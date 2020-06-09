@@ -5,3 +5,5 @@
 .DS_Store
 .vscode/*
 *.pyc
+*.sqlite3
+rust/hello/target/*
